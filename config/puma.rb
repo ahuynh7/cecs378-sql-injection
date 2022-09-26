@@ -43,4 +43,4 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 require "dotenv"
-Dotenv.load("/config/.env")
+Dotenv.load
