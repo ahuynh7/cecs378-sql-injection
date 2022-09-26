@@ -7,11 +7,11 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  database: cecs378-sql-injection
-  username: group2
-  password: louisuuh
-  host: cecs378-sql-injection.c1uoowunpu40.us-west-1.rds.amazonaws.com
-  port: 5432
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
   timeout: 5000
 
 development:
