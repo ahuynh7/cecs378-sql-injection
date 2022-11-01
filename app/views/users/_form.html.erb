@@ -13,6 +13,9 @@
 
   <div>
     <%= form.text_field :first_name, value: user.first_name, placeholder: "first name" %>
+    <%= form.text_field :last_name, value: user.last_name, placeholder: "last name" %>
+    <%= form.text_field :username, value: user.username, placeholder: "username" %>
+    <%= form.password_field :password, value: user.password, placeholder: "password" %>
     <%= form.submit %>
   </div>
 <% end %>
