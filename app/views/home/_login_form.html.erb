@@ -1,0 +1,7 @@
+<%= form_tag login_path, :method => "get" do %>
+  <div>
+    <%= text_field_tag(:username, params[:username], placeholder: "username") %>
+    <%= text_field_tag(:password, params[:password], placeholder: "password") %>
+    <%= submit_tag("Login", :name => nil) %>
+  </div>
+<% end %>
