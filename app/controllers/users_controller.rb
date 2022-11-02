@@ -21,20 +21,24 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
-
     #validate if username is unique
     #possible weakpoint for sql-injection
-    puts "zzz"
-    puts @user
+    user_fetch = User.where("username = '#{user_params[:username]}'")
+    #puts user_fetch
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to root_path, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
+      if user_fetch.length == 0   #if username doesn't exist, proceed
+        @user = User.new(user_params)
+        
+        if @user.save
+          format.html { redirect_to root_path, notice: "User was successfully created." }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: "username already exists" }
       end
     end
   end
