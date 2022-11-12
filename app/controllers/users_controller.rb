@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     #validate if username is unique
     #possible weakpoint for sql-injection
     user_fetch = User.where("username = '#{user_params[:username]}'")
-    #puts user_fetch
+    puts user_fetch 
 
     respond_to do |format|
       if user_fetch.length == 0   #if username doesn't exist, proceed
@@ -38,7 +38,9 @@ class UsersController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       else
-        format.html { redirect_to root_path, notice: "username already exists" }
+        username = user_fetch.map {|user| user.username }.join
+
+        format.html { redirect_to root_path, notice: "username: '#{username}' already exists" }
       end
     end
   end
