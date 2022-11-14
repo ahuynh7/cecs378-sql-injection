@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     #validate if username is unique
-    #possible weakpoint for sql-injection
+    #possible weak point for sql-injection
     user_fetch = User.where("username = '#{user_params[:username]}'")
     puts user_fetch 
 
